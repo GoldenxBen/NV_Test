@@ -130,7 +130,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed(routeName);
+          Navigator.of(context).pushReplacementNamed(routeName);
         },
       ),
     );
@@ -155,10 +155,32 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign In, Homies',
-            style: GoogleFonts.workSans(fontWeight: FontWeight.w500)),
+      body: SafeArea(
+        child: Theme(
+          data: ThemeData(
+            textTheme: TextTheme(
+              headline1: TextStyle(color: Colors.white),
+              bodyText2: TextStyle(color: Colors.white),
+            ),
+          ),
+          child: Builder(
+            builder: buildBody,
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget buildBody(context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Column(
+      children: [
+        Text(
+          'Snapshot',
+          style: textTheme.bodyText2,
+        ),
+      ],
     );
   }
 }
